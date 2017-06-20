@@ -1,3 +1,7 @@
 .img-responsive {width: 100%; height: auto;}
 .img-block {padding: 15px 15px;margin: 10px 0; background-color: white;}
 .img-title {padding-bottom: 10px;font-size: 16px;}
+.msg-user {color: #cccccc;margin-bottom: 8px;}
+.img {position: relative;}
+.img span {position: absolute; right: 15px; bottom: 10px;background-color: rgba(0,0,0,.5);padding: 3px 10px;border-radius: 3px; color: white;}
+#msg-input {width: 100%;border-radius: 5px;border-color: #cccccc;}
