@@ -1,10 +1,46 @@
+document.write("<script src='/js/base64.js'></script>");
 const dataUrl = "http://192.168.31.107:8080"
 // Initialize your app
 var myApp = new Framework7({
     cache: true,
-    precompileTemplates: true
+    precompileTemplates: true,
+    onAjaxStart: function (xhr) {
+        //if token valid
+        var tokenStr = localStorage.getItem('token');
+        
+        if (tokenStr == "" || tokenStr == null) {
+            return;
+        }
+        tokenStr = tokenStr.split('.');
+        var b = new Base64();
+        var str = b.decode(tokenStr[1]);
+        str = str.replace(/\u0000/g,'');
+        var obj = JSON.parse(str);
+        //console.log(obj);
+        var currTime = Math.round(new Date().getTime()/1000);
+        minusTime = currTime - obj.exp;
+        if (minusTime > -10) {
+            refreshToken(obj.id);
+            return;
+        }
+    },
 });
-
+function refreshToken(i){
+    $$.ajax({
+            method:"get",
+            url: dataUrl + "/refreshToken",
+            dataType:"json",
+            data: {"id":i},
+            success: function(data){
+                if (data.code ==200) {
+                    localStorage.setItem('token', data.token);
+                }
+            },
+            error: function(data){
+                myApp.alert(data.statusText,'错误');
+            }
+        })
+}
 // Export selectors engine
 var $$ = Dom7;
 
