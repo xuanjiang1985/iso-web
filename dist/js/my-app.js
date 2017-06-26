@@ -60,7 +60,7 @@ myApp.onPageInit('message', function (page) {
                 mainView.router.loadPage("chat.html");
             },
             error: function(data){
-                console.log(data);
+                myApp.alert(data.statusText,'错误');
             }
         })
     });
@@ -174,7 +174,7 @@ myApp.onPageInit('user', function (page) {
             },
             error: function(data){
                 myApp.hideIndicator();
-                myApp.alert(data.textStatus,'错误');
+                myApp.alert(data.statusText,'错误');
             }
         });
 
@@ -223,7 +223,7 @@ function changeNameEvent() {
                     $$('#change-name').text(data.userName);
                 },
                 error: function(data){
-                    myApp.alert("服务器错误",'错误');
+                    myApp.alert(data.statusText,'错误');
                 }
            });
         });
