@@ -5,3 +5,7 @@
 .img {position: relative;}
 .img span {position: absolute; right: 15px; bottom: 10px;background-color: rgba(0,0,0,.5);padding: 3px 10px;border-radius: 3px; color: white;}
 #msg-input {width: 100%;border-radius: 5px;border-color: #cccccc;}
+#register {float: right;}
+/*标准css*/
+.text-center {text-align: center;}
+.hidden {display: none;}
